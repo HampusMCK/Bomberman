@@ -2,8 +2,8 @@
 
 public class Grid
 {
-    private static float x = 4;
-    public Vector2[,] pos = new Vector2[10, 10]{
+    private static float x = 4; //cell size devided by 20
+    public Vector2[,] pos = new Vector2[10, 10]{ //Array of positions
         {new Vector2(0 * x, 0 * x), new  Vector2(20 * x,0 * x), new Vector2(40 * x,0 * x),new Vector2(60 * x, 0 * x),new Vector2(80 * x,0 * x),new Vector2(100 * x,0 * x),new Vector2(120 * x,0 * x),new Vector2(140 * x,0 * x),new Vector2(160 * x,0 * x),new Vector2(180 * x,0 * x)},
 
         {new Vector2(0 * x, 20 * x), new  Vector2(20 * x,20 * x), new Vector2(40 * x,20 * x),new Vector2(60 * x, 20 * x),new Vector2(80 * x,20 * x),new Vector2(100 * x,20 * x),new Vector2(120 * x,20 * x),new Vector2(140 * x,20 * x),new Vector2(160 * x,20 * x),new Vector2(180 * x,20 * x)},

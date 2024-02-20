@@ -3,12 +3,12 @@
 public class Player
 {
     public string Name;
-    public int ID;
+    public int ID; //Player ID
     public int Health;
     public Vector2 pos;
-    public Weapons Weapon;
+    public Weapons Weapon; //Weapon Place Holder
 
-    public void edgeRestraint()
+    public void edgeRestraint() //Void to prevent player moving out of grid
     {
         if (pos.X < 0)
             pos.X = 0;

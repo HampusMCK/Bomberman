@@ -10,14 +10,45 @@ public class Bombs : Weapons
 
     public override void Use(Player p, List<Cell> cells)
     {
+        //Get position where bomb is placed
         pos = p.pos;
-        Rectangle blastArea = new Rectangle(pos.X - range, pos.Y - range, new Vector2(range * 2, range * 2));
-        foreach (Cell c in cells)
+        //Var to keep track of the cell being checked
+        Vector2 cellBeingChecked = new Vector2();
+        //List of directions
+        List<Vector2> dir = new List<Vector2>()
         {
-            if (c.type == 2)
+            new Vector2(1, 0),
+            new Vector2(-1, 0),
+            new Vector2(0, 1),
+            new Vector2(0, -1)
+        };
+        for (int i = 0; i < 4; i++) //Loop 4x (up, down, right, left)
+        {
+            for (int x = 1; x < range + 1; x++) //Loop range leangth
             {
-                if (Raylib.CheckCollisionPointRec(c.pos, blastArea))
-                    c.changeType("Damage");
+                cellBeingChecked = pos + (dir[i] * x); //Check cell to the direction defined by the list * the step of the range
+                foreach (Cell c in cells)
+                {
+                    if (c.pos == cellBeingChecked) //Check if the cell is in the right position
+                    {
+                        switch (x) //Switch based on step of range
+                        {
+                            case 1: //First step
+                                if (c.type == 3) //If unbreakable wall
+                                    x = range + 1; //Set x to out of loop to prevent checking next step
+                                if (c.type == 2) //If breakable wall
+                                {
+                                    c.changeType("Damage"); //Break wall
+                                    x = range + 1; //Set c to out of loop to prevent checking next step
+                                }
+                                break;
+                            case 2: //Second step
+                                if (c.type == 2) //If breakable wall
+                                    c.changeType("Damage"); //Break wall
+                                break;
+                        }
+                    }
+                }
             }
         }
     }

@@ -14,12 +14,12 @@ public class Player
     {
         if (pos.X < 0)
             pos.X = 0;
-        if (pos.X > 9)
-            pos.X = 9;
+        if (pos.X > 12)
+            pos.X = 12;
         if (pos.Y < 0)
             pos.Y = 0;
-        if (pos.Y > 9)
-            pos.Y = 9;
+        if (pos.Y > 12)
+            pos.Y = 12;
 
         //Calculate result of moving onto new cell
         foreach (Cell c in cells)

@@ -3,6 +3,20 @@ using Raylib_cs;
 
 public class Human : Player
 {
+    public Human(int _ID)
+    {
+        ID = _ID;
+        switch(ID)
+        {
+            case 0:
+                pos = new Vector2(0, 0);
+                break;
+            case 1:
+                pos = new Vector2(12, 12);
+                break;
+        }
+    }
+
     public void GetPlayerInput(int playerID, List<Cell> cells)
     {
         if (playerID == 0)
@@ -29,8 +43,8 @@ public class Human : Player
             }
 
             if (Raylib.IsKeyPressed(KeyboardKey.E))
-                if (Weapon != null)
-                    Weapon.Use(this, cells);
+                if (bomb != null)
+                    bomb.Use(this, cells);
         }
 
         if (playerID == 1)
@@ -57,8 +71,8 @@ public class Human : Player
             }
 
             if (Raylib.IsKeyPressed(KeyboardKey.L))
-                if (Weapon != null)
-                    Weapon.Use(this, cells);
+                if (bomb != null)
+                    bomb.Use(this, cells);
         }
     }
 }

@@ -16,23 +16,26 @@ Raylib.SetWindowPosition((int)screenMargins.X / 2, (int)screenMargins.Y / 2);
 
 Grid g = new();
 Player p = new();
-Human h = new Human() { ID = 0 };
-Human h2 = new Human() { ID = 1 };
+List<Player> players = new List<Player>(){
+    new Human(0),
+    new Human(1)
+};
 
 int cellSize = 60;
 
 List<Cell> cells = new();
 //Calculate even margins to center game grid to game window
 Vector2 cellMargin = new Vector2((WindowSize.X - (cellSize * 13)) / 2, (WindowSize.Y - (cellSize * 13)) / 2);
+g.populateGrid();
 createMap();
 while (!Raylib.WindowShouldClose())
 {
     //---------------------Get Player Inputs-----------------
-    h.GetPlayerInput(h.ID, cells);
-    h.edgeRestraint(cells);
-
-    h2.GetPlayerInput(h2.ID, cells);
-    h2.edgeRestraint(cells);
+    foreach (Human h in players)
+    {
+        h.GetPlayerInput(h.ID, cells);
+        h.edgeRestraint(cells);
+    }
     //-------------------------------------------------------
 
     Raylib.BeginDrawing();
@@ -41,8 +44,10 @@ while (!Raylib.WindowShouldClose())
     drawMap();
 
     //Draw player rect
-    Raylib.DrawRectangle((int)(g.pos[(int)h.pos.X, (int)h.pos.Y].X + cellMargin.X), (int)(g.pos[(int)h.pos.X, (int)h.pos.Y].Y + cellMargin.Y), cellSize, cellSize, Color.Red);
-    Raylib.DrawRectangle((int)(g.pos[(int)h2.pos.X, (int)h2.pos.Y].X + cellMargin.X), (int)(g.pos[(int)h2.pos.X, (int)h2.pos.Y].Y + cellMargin.Y), cellSize, cellSize, Color.Red);
+    foreach (Human h in players)
+    {
+        Raylib.DrawRectangle((int)(g.pos[(int)h.pos.X, (int)h.pos.Y].X + cellMargin.X), (int)(g.pos[(int)h.pos.X, (int)h.pos.Y].Y + cellMargin.Y), cellSize, cellSize, Color.Red);
+    }
     Raylib.EndDrawing();
 }
 

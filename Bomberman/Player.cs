@@ -7,7 +7,7 @@ public class Player
     public bool Alive = true;
     public Vector2 pos;
     public Vector2 dir;
-    public Weapons Weapon = new Bombs(); //Weapon Place Holder
+    public Bombs bomb = new Bombs(); //Weapon Place Holder
     public Item Upgrade; //Upgrade Place Holder
 
     public void edgeRestraint(List<Cell> cells) //Void to prevent player moving out of grid
@@ -30,7 +30,11 @@ public class Player
 
             if (c.type == 1) //Pickup item from cell if it contains item
                 if (c.pos == pos)
+                {
                     c.changeType("Player");
+                    if (bomb.range < 5)
+                        bomb.range++;
+                }
         }
     }
 }

@@ -39,7 +39,7 @@ public class Bombs : Weapons
                                 if (c.type == 2) //If breakable wall
                                 {
                                     c.changeType("Damage"); //Break wall
-                                    x = range + 1; //Set c to out of loop to prevent checking next step
+                                    x = range + 1; //Set x to out of loop to prevent checking next step
                                 }
                                 break;
                             case 2: //Second step
